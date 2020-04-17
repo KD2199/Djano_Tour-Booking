@@ -1,0 +1,56 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Your Order{%endblock%}
+
+
+{% block body%}
+<br><br><br><br><br><br>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid aliceblue;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+        color: aliceblue;
+
+    }
+</style>
+
+<body>
+    <center>
+        <center>
+            <b>
+                <h1 style="color: aliceblue;"> Your Booking</h1>
+            </b>
+        </center><br>
+        <table style="width:70%">
+
+            <tr>
+                <th>CityName</th>
+                <th>Total</th>
+                <th>Booking Date</th>
+                <th>Depart Date</th>
+            </tr>
+            {% for i in data %}
+            <tr style="font-weight: bolder;color: aliceblue;">
+                <td>{{i.CityName}}</td>
+                <td>{{i.Total}}</td>
+                <td>{{i.Booking_date}}</td>
+                <td>{{i.Depart_date}}</td>
+            </tr>
+            {% endfor %}
+        </table><br>
+
+        <center><a href="#" style="text-decoration: none;color:transparent;"><input type="button"
+                    value="Booked Tours : {{obj}} " class="btn btn-outline-warning"
+                    style="width:40%;cursor: pointer;border-radius: 12px;padding: 6px;font-weight: bold;"></input></a>
+        </center><br>
+    </center>
+
+    {%endblock%}

@@ -1,0 +1,285 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title%}{%endblock%}</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/3b4f886c56.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+
+
+</head>
+
+<body style="background-image: url({% static 'footer_1.jpg'%});background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 140%;
+    opacity: 0.8;
+    height: 100%;
+    position: relative;
+    ">
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+    style="padding: 15px;position: absolute;font-weight: bolder;width: 100%;">
+    <a class="navbar-brand" href="/">
+      <img src="{% static 'logo.png'%}" width="30" height="30" class="d-inline-block align-top" alt=""
+        style="border-radius: 25px;">
+      Family Touriest
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" style="margin-left: 10px;">
+        <li class="nav-item ">
+           <button type="button" class="btn btn-primary" style="padding: 0px;"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></button>
+        </li>
+        <li class="nav-item" style="margin-left: 10px;">
+           <button type="button" class="btn btn-primary" style="padding: 0px;"><a class="nav-link" href="/home/about"><i class="fas fa-users"></i> AboutUs</a></button>
+        </li>
+
+
+        {% if user.is_authenticated%}
+        {% if user.is_superuser%}
+        <button type="button" class="btn btn-primary" style="margin-left:10px;padding: 0;">
+        <li class="nav-item dropdown" style="margin-left: 10px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+            Hello, {{user.username}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <a class="dropdown-item" href="/Account/Aprofile"><i class="fas fa-user"></i> profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/home/msg"><i class="fas fa-envelope"></i> Inbox</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/Account/logout"><i class="fa fa-sign-out"></i> Logout</a>
+          </div>
+        </li></button>
+        {%else%}
+        <li class="nav-item" style="margin-left: 10px;">
+          <button type="button" class="btn btn-primary" style="padding: 0px;"><a class="nav-link" href="/home/offer"><i class="fas fa-tags"></i> Best Offers</a></button>
+        </li>
+        <button type="button" class="btn btn-primary" style="margin-left:10px;padding: 0;">
+        <li class="nav-item dropdown" style="margin-left: 10px;">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+            Hello, {{user.username}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <a class="dropdown-item" href="/Account/profile"><i class="fas fa-user"></i> profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/Account/order"><i class="fas fa-clipboard"></i> Your Booking</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/Account/logout"><i class="fa fa-sign-out"></i> Logout</a>
+          </div>
+        </li>
+        {%endif %}
+
+        {%endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          style="width:180px;border: solid whitesmoke;border-width: 2px;padding: 6px;border-radius: 5px;cursor: pointer;"
+          type="search" placeholder="Search Your Query" aria-label="Search">
+        <a class="nav-link" href="/"><button type="button" class="btn btn-outline-primary">Search</button></a>
+        {% if user.is_authenticated%}
+        {% if not user.is_superuser%}
+        <div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ContactUsModal">Contact
+            Us</button>
+        </div>
+        {%endif %}
+        {%endif %}
+      </form>
+      {% if user.is_authenticated is False%}
+      <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signupModal">SignUp</button>
+      </div>
+      {%endif %}
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <center>
+            <h1 style="color:#252525;text-align: center;">Login</h1>
+          </center><br>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form action="/Account/login/" method='post'>
+            {% csrf_token %}
+            <div>
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="email" type="text" name="username" placeholder="Enter username" title="Enter username" required>
+            </div>
+            <div>
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;margin-top: 10px;border: solid #252525;"
+                id="password" type="Password" name="password" placeholder="Enter Password " title="Enter Password" required>
+            </div><br>
+
+            <div class="g-recaptcha" data-sitekey="6LeNT9QUAAAAABHIFnenK3KDkG_T2evKYUXp5RI7"
+            style="width:280px;cursor: pointer;"></div><br>
+
+            <button type="submit" class="btn btn-danger mt-2" id="loginsubmit">Login</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SignUp Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <center>
+            <h1 style="color:#252525;text-align: center;">Register</h1>
+          </center><br>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form method="post" action="/Account/register/">
+            {% csrf_token %}
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="uname" type="text" name="uname" placeholder="Enter Your Name " title="Enter Your Name " required>
+
+            </div><br>
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="email" type="email" name="email" placeholder="Email Address" title="Enter Email Address" required>
+
+            </div><br>
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="password" type="Password" name="password" placeholder="Password " title="Enter Password" required>
+
+            </div><br>
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="rpassword" type="Password" name="pw2" placeholder="Retype-Password " title="Enter Password Again" required>
+
+            </div><br>
+
+            <button type="submit" class="btn btn-danger mt-2">SignUp</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Us Modal -->
+  <div class="modal fade" id="ContactUsModal" tabindex="-1" role="dialog" aria-labelledby="ContactUsModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <center>
+            <h1 style="color:#252525;text-align: center;">Write To Us</h1>
+          </center><br>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form method="post" action="/home/contact/">
+            {% csrf_token %}
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="uname" type="text" name="uname" value={{user.username}}><br>
+
+            </div><br>
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="uname" type="email" name="email" value={{user.email}}><br>
+
+            </div><br>
+            <div>
+
+              <input
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="uname" type="text" name="sub" value="Enter Subject Here" required><br>
+
+            </div><br>
+            <div>
+
+              <textarea
+                style="width:100%;padding: 6px;cursor: pointer;color:#252525;background-color: white;border: solid #252525;"
+                id="uname" type="text" name="msg" placeholder="Write Something" required></textarea><br>
+
+            </div><br>
+
+            <button type="submit" class="btn btn-danger mt-2">Send</button>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block body%}{%endblock%}
+
+</body>
+
+</html>

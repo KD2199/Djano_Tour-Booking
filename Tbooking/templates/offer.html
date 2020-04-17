@@ -1,0 +1,41 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Deals & Offers{%endblock%}
+
+
+{% block body%}
+
+<br><br><br><br><br><br>
+
+<center>
+  <b>
+    <h5 class="card-title" style="color: aliceblue;">Popular Destinations</h5>
+  </b>
+</center><br>
+
+{% for i in obj %}
+<div class="card-body">
+  <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value={{i.CityName}}
+        class="btn btn-outline-warning" style="width: 20%;cursor: pointer;border-radius: 5px;"
+        title={{i.CityName}}></input></a></center><br>
+  <center> <a href="#" style="text-decoration: none;color:transparent;"><img src="{{ i.Citypic.url }}"
+        class="card-img-top" alt="..." style="width:40%;border-radius: 12px;"></a></center>
+
+  <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value="Price : {{i.Price}}"
+        class="btn btn-outline-primary" style="width: 20%;cursor: pointer;border-radius: 5px;margin-top: 10px;"
+        title="Price : {{i.Price}}"></input></a>
+  </center>
+  {% if i.Special_Offer is True%}
+  <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value="Special Offer"
+        class="btn btn-outline-danger"
+        style="width: 20%;cursor: pointer;border-radius: 5px;margin-top: 10px;padding: 6px;"
+        title="In Special Offer"></input></a></center>
+  {% endif %}
+  <center> <a href="{% url 'book'  places_pk=i.pk %}" style="text-decoration: none;color:transparent;"><input
+        type="submit" value="Book Now!" class="btn btn-outline-success"
+        style="width: 20%;cursor: pointer;border-radius: 5px;margin-top: 10px;" title="Book Now!"></input></a></center>
+</div>
+<!-- </div><br> -->
+{% endfor %}
+
+{%endblock%}

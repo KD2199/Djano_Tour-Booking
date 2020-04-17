@@ -1,0 +1,66 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Registeration{%endblock%}
+
+
+{% block body%}<br><br><br><br><br>
+<script src="{% static 'reg.js' %}"></script>
+
+{% if messages %}
+{% for message in messages %}
+<center>
+  <h1 style="color:red;"><strong>{{ message }}</strong></h1>
+</center>
+{% endfor %}
+{% endif %}
+<br>
+<center>
+  <div class="container" style="height:auto;width: 50%;position: relative;border: solid aliceblue 1px ;border-radius: 15px;">
+    <center>
+      <h1 style="color:aliceblue;"><strong>Register</strong></h1>
+    </center><br>
+    <form onsubmit="return check()" action="/Account/register/" method="post">
+      {% csrf_token %}
+
+      <div>
+        <center><input
+            style="width:250px;border: solid #252525;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+            id="uname" type="text" name="uname" placeholder="Enter Your Name " title="Enter Your Name "></center>
+        <center>
+          <label id="12" style="color: red;visibility: hidden;font-style: italic;margin-right: 50px;">*Invalid
+            Username</label>
+        </center>
+        <center><input
+            style="width:250px;border: solid #252525;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+            id="email" type="email" name="email" placeholder="Email Address" title="Enter Email Address">
+        </center>
+        <center> <label id="7" style="color: red;visibility: hidden;font-style: italic;margin-right: 50px;">*Invalid
+            Email_id</label>
+        </center>
+
+        <center><input
+            style="width:250px;border: solid #252525;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+            id="password" type="Password" name="password" placeholder="Password " title="Enter Password">
+        </center>
+        <center><label id="8" style="color: red;visibility: hidden;font-style: italic;margin-right: 50px;">*Password Is
+            Too
+            Short!!</label>
+        </center>
+        <center> <input
+          style="width:250px;border: solid #252525;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+          id="rpassword" type="Password" name="pw2" placeholder="Confirm-Password " title="Enter Password Again">
+      </center>
+        <center></label>
+          <label id="9" style="margin-left: 10px;color: red;visibility: hidden;font-style: italic;">*Password Didn't
+            Match</label>
+        </center>
+        <center><input type="submit" value="Submit" class="btn btn-outline-warning"
+            style="width:130px;cursor: pointer;border-radius: 15px;padding: 6px;"></input></center>
+
+      </div><br>
+    </form>
+  </div>
+</center><br>
+
+
+{%endblock%}

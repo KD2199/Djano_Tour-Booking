@@ -1,0 +1,52 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Messages{%endblock%}
+
+
+{% block body%}
+<br><br><br><br><br>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid aliceblue;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+        color: aliceblue;
+
+    }
+</style>
+
+<body>
+                {% if user.is_superuser%}
+            <center>
+                <center>
+                    <b><h1 style="color: aliceblue;"> Inbox</h1></b>
+                </center><br>
+                <table style="width:90%">
+
+                    <tr>
+                        <th>UserName</th>
+                        <th>Email_Id</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                    </tr>
+                    {% for i in obj %}
+                    <tr style="font-weight: bolder;color: aliceblue;">
+                        <td>{{i.UserName}}</td>
+                        <td>{{i.Email}}</td>
+                        <td>{{i.Subject}}</td>
+                        <td>{{i.Message}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table><br>
+            {% endif %}
+            </center>
+
+    {%endblock%}

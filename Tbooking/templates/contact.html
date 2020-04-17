@@ -1,0 +1,45 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Write To Us{%endblock%}
+
+
+{% block body%}
+<script type="text/javascript">
+
+    function check()
+    {
+        alert("WE Will Contact YOU Soon!")
+        }
+</script>
+<body><br><br><br><br><br><br>
+    <form action="/home/contact/" method="post"> 
+        {% csrf_token %}
+        <center>
+            <h1 style="color: aliceblue;">Write To Us</h1>
+        </center><br>
+        {% if user.is_authenticated%}
+        <center>
+            <div class="container"
+                style="height:auto;width: 50%;position: relative;border: solid aliceblue 1px ;border-radius: 15px;"><br>
+                <b><label style="color: aliceblue;">Your Name:</label></b><input
+                    style="margin-left: 10px;width:250px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;background-color:#252525;color: whitesmoke;"
+                    id="uname" type="text" name="uname" value={{user.username}}><br><br> <b><label style="color: aliceblue;">Your Email:</label></b><input
+                    style="margin-left: 10px;width:250px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;background-color:#252525;color: whitesmoke;"
+                    id="uname" type="email" name="email" value={{user.email}}><br><br> <b><label style="color: aliceblue;">Query
+                        Subject:</label></b><input
+                    style="margin-left: 9px;width:250px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;background-color:#252525;color: whitesmoke;"
+                    id="uname" type="text" name="sub" value="Enter Subject Here"><br><br>
+                <b><label style="color: aliceblue;">Write Message:</label></b><br>
+                <center><textarea
+                        style="margin-left: 10px;width:250px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;background-color:#252525;color: whitesmoke;"
+                        id="uname" type="text" name="msg" placeholder="Write Something"></textarea></center><br>
+                <center><input type="submit" value="Send" class="btn btn-outline-warning"
+                        style="width:130px;cursor: pointer;border-radius: 15px;padding: 6px;" onclick="return check()" ></input></center><br>
+
+            </div>
+        </center><br><br>
+
+        {% endif %}
+
+
+        {%endblock%}

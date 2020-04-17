@@ -1,0 +1,104 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Profile{%endblock%}
+
+
+{% block body%}
+<br><br><br><br><br><br>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid aliceblue;
+        border-collapse: collapse;
+        color: aliceblue;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+
+    }
+</style>
+
+<body>
+    <form method="post"> {% csrf_token %}
+        {% if user.is_superuser%}
+        <center>
+            <h1 style="color: aliceblue;">Admin Profile</h1>
+        </center><br>
+        {%else%}
+        <center>
+            <h1 style="color: aliceblue;">Your Profile</h1>
+        </center><br>
+        {% endif %}
+        <center>
+            <table style="width:70%">
+
+                <tr>
+                    <th>UserName</th>
+                    <th>Email_Id</th>
+                    {% if not user.is_superuser%}
+                    <th>Outbox</th>
+                    {% endif %}
+                    {% if user.is_superuser%}
+                    <th>Registered Users</th>
+                    <th>Total Booking</th>
+                    
+                    {% endif %}
+                </tr>
+                {% if user.is_authenticated%}
+                <tr style="font-weight: bolder;">
+                    <td><input
+                            style="width:210px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;margin-left: 3px;background-color:#252525;color: whitesmoke;"
+                            id="uname" type="text" name="uname" value={{user.username}}></td>
+                    <td><input
+                            style="width:210px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;margin-left: 3px;background-color:#252525;color: whitesmoke;"
+                            id="vid" type="email" name="email" value={{user.email}}></td>
+                            
+
+                            {% if not user.is_superuser%}
+                            <td>{{obj}}</td>
+                            {% endif %}
+
+                            {% if user.is_superuser%}
+                            <td>{{obj1}}</td>
+                            <td>{{data}}</td>
+                            {% endif %}
+                         
+                </tr>
+                {% endif %}
+            </table><br><br>
+            {% if user.is_superuser%}
+           
+        <center><a href="/home/booking_list" style="text-decoration: none;color:transparent;"><input type="button"
+            value="Booking List" class="btn btn-outline-warning"
+            style="width:40%;cursor: pointer;border-radius: 12px;padding: 6px;font-weight: bold;" title="Booking List"></input></a>
+</center><br>
+{% endif %}
+            <!-- {% if user.is_superuser%}
+            <center>
+                <center>
+                    <b><h1>Messages</h1></b>
+                </center><br>
+                <table style="width:60%">
+
+                    <tr>
+                        <th>UserName</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                    </tr>
+                    {% for i in obj %}
+                    <tr style="font-weight: bolder;color: black;">
+                        <td>{{i.UserName}}</td>
+                        <td>{{i.Subject}}</td>
+                        <td>{{i.Message}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table><br>
+            {% endif %}
+            </center></form> -->
+
+    {%endblock%}

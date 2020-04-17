@@ -1,0 +1,78 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}Login{%endblock%}
+
+
+{% block body%}
+<!-- <script src="{% static 'login.js' %}"></script> -->
+
+<br><br><br><br><br><br>
+{% if messages %}
+{% for message in messages %}
+<center>
+  <h1 style="color:red;"><strong>{{ message }}</strong></h1>
+</center>
+{% endfor %}
+{% endif %}
+<br>
+
+<!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+<center>
+  <div class="container"  style="height:auto;width: 50%;position: relative;border: solid aliceblue 1px ;border-radius: 15px;">
+    <center>
+      <h1 style="color:aliceblue;"><strong>Login</strong></h1>
+    </center><br>
+    <form onsubmit="return check()" action="/Account/login/" method="post">
+      {% csrf_token %}
+
+      <div>
+        <center><input
+            style="width:280px;border: solid aliceblue;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+            id="email" type="text" name="username" placeholder="Enter UserName/Mobile/Email"
+            title="Enter UserName/Mobile/Email"></center>
+        <center><label id="7" style="color: red;visibility: hidden;font-style: italic;">*Invalid Username</label>
+        </center>
+        <center><input
+            style="width:230px;border: solid #252525;border-width: 2px;padding: 6px;border-radius: 8px;cursor: pointer;color:#252525;background-color: whitesmoke;"
+            id="password" type="Password" name="password" placeholder="Enter Password " title="Enter Password"> <button
+            type="button" onclick="myFunction()" class="btn btn-outline-warning" title="Show Password">
+            <span class="fas fa-eye"></span>
+          </button> </center>
+        <center><label id="8" style="color: red;visibility: hidden;font-style: italic;">*It is mandatory</label>
+        </center>
+        <!-- <center>
+          <div class="g-recaptcha" data-sitekey="6LeNT9QUAAAAABHIFnenK3KDkG_T2evKYUXp5RI7"
+            style="width:280px;cursor: pointer;"></div>
+        </center> -->
+        <br>
+        <center><input type="submit" value="Sign In" class="btn btn-outline-danger"
+            style="width:130px;cursor: pointer;border-radius: 15px;padding: 6px;"></input>
+        </center><br>
+        <div class="fid">
+
+          <center><a href="/" style="text-decoration: none;color:transparent;"><input type="button"
+                value="Forgot Password" class="btn btn-outline-warning"
+                style="width: 160px;cursor: pointer;border-radius: 12px;padding: 6px;font-weight: bold;"></input></a>
+          </center><br>
+          <center><a href="/Account/register" style="text-decoration: none;color:transparent;"><input type="button"
+                value="Don't have account register now!" class="btn btn-outline-warning"
+                style="width:42%;cursor: pointer;border-radius: 12px;padding: 6px;font-weight: bold;"></input></a>
+          </center><br>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+</center><br>
+<script>
+  function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+{%endblock%}

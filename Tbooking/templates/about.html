@@ -1,0 +1,78 @@
+{%extends 'basic.html'%}
+{% load static%}
+{% block title%}About Us{%endblock%}
+
+
+{% block body%}
+<br><br><br><br><br><br>
+<center>
+    <b>
+        <h5 style="color: aliceblue;font-size: xx-large;">Why choose us?</h5>
+    </b>
+</center><br>
+<!-- 
+<div class="card-deck">
+    <div class="card" style="border-radius: 30px;margin-left: 50px;">
+        <center><img src="{% static 'news_2.jpg'%}" class="card-img-top" alt="..." style="width: 95%;margin-top: 10px;border-radius: 12px;">
+        </center>
+        <div class="card-body">
+            <center>
+                <b>
+                    <h5 class="card-title" style="color: #252525;">Fast Services</h5>
+                </b>
+            </center>
+        </div>
+    </div>
+
+    <div class="card" style="border-radius: 30px;">
+        <center><img src="{% static 'destination_5.jpg'%}" class="card-img-top" alt="..." style="width: 85%;margin-top: 10px;border-radius: 12px;">
+        </center>
+        <div class="card-body">
+            <center> <b>
+                    <h5 class="card-title"  style="color: #252525;">Best Deals</h5>
+                </b></center>
+        </div>
+    </div>
+
+    <div class="card" style="border-radius: 30px;margin-right: 50px;">
+        <center><img src="{% static 'about_1.jpg'%}" class="card-img-top" alt="..."
+                style="width: 65%;margin-top: 10px;border-radius: 12px;"></center>
+        <div class="card-body">
+            <center> <b>
+                    <h5 class="card-title"  style="color: #252525;">Great Team</h5>
+                </b></center>
+        </div>
+    </div>
+
+</div> -->
+
+<div class="card-group">
+    <div class="card" style="background-color:transparent;align-items: center;border-style: none;">
+      <div class="card-body">
+        <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value="Fast Services" class="btn btn-outline-warning"
+          style="width: 85%;cursor: pointer;border-radius: 5px;padding: 6px;"></input></a></center><br>
+        <a href="#" style="text-decoration: none;color:transparent;"><img
+            src="{% static 'news_2.jpg'%}" class="card-img-top" alt="..." style="width: 300px;border-radius: 12px;border:solid transparent 2px;"></a>
+      </div>
+    </div>
+
+    <div class="card" style="background-color:transparent;align-items: center;border-style: none;">
+        <div class="card-body">
+          <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value="Best Deals" class="btn btn-outline-warning"
+            style="width: 85%;cursor: pointer;border-radius: 5px;padding: 6px;"></input></a></center><br>
+          <a href="#" style="text-decoration: none;color:transparent;"><img
+              src="{% static 'destination_5.jpg'%}" class="card-img-top" alt="..." style="width: 280px;border-radius: 12px;border:solid transparent 2px;"></a>
+        </div>
+      </div>
+      <div class="card" style="background-color:transparent;align-items: center;border-style: none;">
+        <div class="card-body">
+          <center> <a href="#" style="text-decoration: none;color:transparent;"><input type="submit" value="Great Team" class="btn btn-outline-warning"
+            style="width: 85%;cursor: pointer;border-radius: 5px;padding: 6px;"></input></a></center><br>
+          <a href="#" style="text-decoration: none;color:transparent;"><img
+              src="{% static 'why_3.jpg'%}" class="card-img-top" alt="..." style="width: 360px;border-radius: 12px;border:solid transparent 2px;"></a>
+        </div>
+      </div>
+  </div>
+</div>
+
+{%endblock%}
